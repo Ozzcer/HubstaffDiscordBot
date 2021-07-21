@@ -1,4 +1,7 @@
+from dependencies.dotenv.main import dotenv_values
 from dependencies import discord
+
+config = dotenv_values(".env")
 
 client = discord.Client()
 
@@ -18,4 +21,4 @@ async def on_message(message):
       command.split()
       #TODO switch over commands and carry them out
 
-client.run('ODY2OTgxODY2NDQ2NjUxMzky.YPadyA.K1ypIBz7dpmiCQjOFML3STv8zzM')
+client.run(config['BOT_TOKEN'])
