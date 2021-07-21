@@ -34,7 +34,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-
+    return
 
 @client.event
 async def on_message(message):
@@ -44,12 +44,12 @@ async def on_message(message):
     if message.content.startswith('$hubstaff'):
         message_text = message.content
         command = message_text.split()
-        print(command)
         command_function = commandSwitch(command)
         try:
           await message.channel.send(command_function(command))
         except:
-          await message.channel.send('Unknown error attempting to run command function')
+          await message.channel.send('Unknown error attempting to run command function for command: '+message_text)
           raise Exception('Unknown error attempting to run command function')
+    return
 
 client.run(config['BOT_TOKEN'])
